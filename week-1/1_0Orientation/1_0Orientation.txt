@@ -1,3 +1,5 @@
+slides: https://projects.100xdevs.com/tracks/web3-orientation/Web3-Cohort---Orientation-1
+
 Why blockchains?
 Inflating currencies
 Government has been printing currencies left right and center. This leads to increasing inflation, price of everything goes up.

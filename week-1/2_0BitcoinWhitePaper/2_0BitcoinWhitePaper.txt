@@ -1,3 +1,4 @@
 https://bitcoin.org/en/bitcoin-paper
 
+slides:
 https://app.100xdevs.com/courses/13/408/464

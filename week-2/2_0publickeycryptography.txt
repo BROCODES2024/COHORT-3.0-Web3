@@ -1,3 +1,6 @@
+slides: https://projects.100xdevs.com/tracks/public-private-keys/Public-Key-Cryptography-8
+notes:https://app.100xdevs.com/courses/13/441/460
+
 //Hashing vs encryption
 
 Hashing

@@ -1,0 +1,51 @@
+slides: https://projects.100xdevs.com/tracks/public-private-keys/Public-Key-Cryptography-8
+notes:https://app.100xdevs.com/courses/13/441/460
+
+genesis block is the first block of the chain which doesnt have any transactions inside it
+
+//How to transactions work on the blockchain?
+Ref - https://andersbrownworth.com/blockchain/
+
+User side
+User first creates a public/private keypair
+They create a transaction that they want to do (send Rs 50 to Alice).  The transaction includes all necessary details like the recipient's address, the amount and some blockchain specific parameters (for eg - latestBlockHash in case of solana)
+They hash the transaction 
+They sign the transaction using their private key
+They send the raw transaction , signature and their public key to a node on the blockchain.
+
+Miner
+Hashes the original message to generate a hash
+Verifies the signature using the users public key and the hash generated in step 1
+Transaction validation - The miner/validator checks additional aspects of the transaction, such as ensuring the user has sufficient funds
+If everything checks out, adds the transaction to the block
+
+
+//Hierarchical Deterministic (HD) Wallet
+
+Hierarchical Deterministic (HD) wallets are a type of wallet that can generate a tree of key pairs from a single seed.  
+This allows for the generation of multiple addresses from a single root seed, providing both security and convenience.
+(seed phrase: we get at the time of wallet creation)
+example: 
+
+book 
+fit 
+fly 
+ketchup 
+also 
+elevator 
+scout 
+mind 
+edit 
+fatal 
+where 
+rookie
+
+(look at the image in slides)
+Problem 
+You have to maintain/store multiple public private keys if you want to have multiple wallets. 
+
+Solution - BIP-32
+Bitcoin Improvement Proposal 32 (BIP-32) provided the solution to this problem in 2012. 
+It was proposed by Pieter Wuilla, a Bitcoin Core developer, to simplify the recovery process of crypto wallets. 
+BIP-32 introduced a hierarchical tree-like structure for wallets that allowed you to manage multiple accounts much more easily than was previously possible.
+It’s essentially a standardized way to derive private and public keys from a master seed.

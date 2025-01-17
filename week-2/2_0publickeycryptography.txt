@@ -1,0 +1,25 @@
+//Hashing vs encryption
+
+Hashing
+Hashing is a process of converting data (like a file or a message) into a fixed-size string of characters, which typically appears random. 
+ex: chetan=> be68877fa734f7f75a4f8aa19dea8744edd6d3bea3d00efcfcad44a1be1cbae3
+Common hashing algorithms - SHA-256, MD5
+
+Encryption
+Encryption is the process of converting plaintext data into an unreadable format, called "ciphertext", using a specific algorithm and a key.
+The data can be decrypted back to its original form only with the appropriate key.
+Key Characteristics:
+Reversible: With the correct key, the ciphertext can be decrypted back to plaintext.
+Key-dependent: The security of encryption relies on the secrecy of the key.
+Two main types:
+Symmetric encryption: The same key is used for both encryption and decryption.
+Asymmetric encryption: Different keys are used, for encryption (public key) and decryption (private key).
+
+symmetric encryption:
+
+chetan +"key" (encryption)=> be68877fa734f7f75a4f8aa19dea8744edd6d3bea3d00efcfcad44a1be1cbae3 +"key" (decryption)= chetan
+
+Asymetric encryption:
+chetan +"private key" (encryption)=> be68877fa734f7f75a4f8aa19dea8744edd6d3bea3d00efcfcad44a1be1cbae3 +"public key" (decryption)= chetan
+
+

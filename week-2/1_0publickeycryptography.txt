@@ -1,0 +1,70 @@
+//Banks vs Blockchains
+How banks do Auth
+In traditional banks, you have a username and password that are enough for you to
+Look at your funds
+Transfer funds
+Look at your existing transactions
+
+centalized exchanges like wazirx,backpack etc doesnt have all the crypto coins
+to hold all types of cryptos we need to create our own wallet ie a public private key pair
+
+How Blockchains do auth
+If you ever want to create an account on a blockchain, you need to generate a public-private keypair.
+Public private Keypair
+A public-private key pair is a set of two keys used in asymmetric cryptography. These two keys have the following characteristics:
+Public Key: The public key is a string that can be shared openly.
+For example - https://etherscan.io/address/0xD9a657ACB3960DB92AaaA32942019bD3c473FCCB
+Private key: The private key is a secret string that must be kept confidential. 
+
+if everyone uses blockchain then there will no black money as every transaction is visible to everyone
+
+//Bits and bytes
+Bits: just 0s and 1s
+Bytes: 8 bits together
+Since each bit can be either 0 or 1, a byte can have 2^8 (256) possible values, ranging from 0 to 255
+
+UInt8Array
+A better way to represent an array of bytes is to use a UInt8Array in JS
+
+let bytes = new Uint8Array([0, 255, 127, 128]);
+console.log(bytes)
+
+Why use UInt8Array over native arrays ?
+They use less space. Every number takes 64 bits (8 bytes). But every value in a UInt8Array takes 1 byte.
+UInt8Array Enforces constraints - It makes sure every element doesn’t exceed 255.
+
+//Encodings
+Bytes are cool but highly unreadable. 
+It’s easier to encode data so it is more human readable . Some common encodings include - 
+Ascii
+Hex
+Base64
+Base58
+
+Ascii
+1 character = 7 bits
+Every byte corresponds to a text on the computer . 
+https://www.w3schools.com/charsets/ref_html_ascii.asp#:~:text=The%20ASCII%20Character%20Set&text=ASCII%20is%20a%207%2Dbit,are%20all%20based%20on%20ASCII
+
+Hex
+1 character = 4 bits
+A single hex character can be any of the 16 possible values: 0-9 and A-F.
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+
+Base64
+1 character = 6 bits
+Base64 encoding uses 64 different characters (A-Z, a-z, 0-9, +, /), which means each character can represent one of 64 possible values.
+https://www.base64encode.org/
+
+Base58
+It is similar to Base64 but uses a different set of characters to avoid visually similar characters and to make the encoded output more user-friendly
+Base58 uses 58 different characters:
+Uppercase letters: A-Z (excluding I and O)
+Lowercase letters: a-z (excluding l)
+Numbers: 1-9 (excluding 0)
++ , /
+
+Ascii vs UTF-8
+ASCII uses a 7-bit encoding scheme.
+UTF-8 uses 1 to 4 bytes to encode each character.
+https://www.fileformat.info/info/charset/UTF-8/list.htm

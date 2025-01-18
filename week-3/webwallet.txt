@@ -1,0 +1,3 @@
+look at project in github 
+link: https://petal-estimate-4e9.notion.site/Creating-a-web-based-wallet-e0f174184f574aa9a73a98cabe3f13b6
+github link: https://github.com/BROCODES2024/Crypto-Wallet

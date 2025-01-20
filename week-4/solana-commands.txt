@@ -1,0 +1,13 @@
+solana config get
+solana address (for getting address)
+solana-keygen new --force(if key is already present)    
+solana-keygen new(if key isnt present already)
+
+cat xxxxxxxxxxxxxxxxxxxxxxxxxxxx(to get private key, get the path(ie xxxxxxxxxxxxxxxxxxxxxxxxxxxx) from saved location)
+
+solana balance(to see balance of our address which we get at solana address)
+
+solana config set --url https://api.mainnet-beta.solana.com (to change the RPC url to mainnet)(we can also use alchemy url)
+solana config set --url https://api.devnet.solana.com (to change the RPC url to devnet)
+solana airdrop 1(to get free solana for development purposes)
+solana-test-validator(for Testnet)

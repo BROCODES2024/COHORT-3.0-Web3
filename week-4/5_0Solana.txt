@@ -1,0 +1,58 @@
+slides: https://petal-estimate-4e9.notion.site/Accounts-on-Solana-196657b4ca1a47ab95801b430484fdae
+
+notes: https://app.100xdevs.com/courses/13/455/465
+# Web2 Data model
+
+In the web2 world, you store `data` in SQL/NoSQL databases.
+
+# Data model on Solana
+
+Solana stores all the data of the `same app` / `same program` in various accounts.
+look at the image in the slides
+
+
+### Transaction vs Instruction
+
+**Transactions**
+
+A transaction in Solana is a bundle that includes one or more instructions. Transactions are used to submit operations or changes to the network. They can be simple, such as transferring SOL between accounts, or complex
+
+**Instructions**
+
+The core operations that the transaction will execute.
+
+💡 There are more concepts like `recentBlockchash` and `signers` , `writeable` that we we will eventually get to.
+
+How to create an account with some data:
+
+const solanaWeb3 = require('@solana/web3.js');
+const fs = require("fs")
+const { Keypair, Connection, SystemProgram, Transaction, sendAndConfirmTransaction } = solanaWeb3;
+
+// Connect to Solana devnet
+const connection = new Connection(solanaWeb3.clusterApiUrl('devnet'), 'confirmed');
+
+// Generate a new keypair for the data account
+const dataAccount = Keypair.generate();
+const payer = Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync(`/Users/harkiratsingh/.config/solana/id.json`, "utf-8")))); // This will be the account paying for the transaction
+
+async function createAccount() {
+    // Create a transaction to create and fund the account
+    const tx = new Transaction().add(
+        SystemProgram.createAccount({
+            fromPubkey: payer.publicKey,
+            newAccountPubkey: dataAccount.publicKey,
+            lamports: await connection.getMinimumBalanceForRentExemption(1000), // Amount to fund the account
+            space: 1000, // Space in bytes to allocate for data
+            programId: SystemProgram.programId,
+        })
+    );
+
+    // Send the transaction to the network
+    const txId = await sendAndConfirmTransaction(connection, tx, [payer, dataAccount]);
+
+    console.log(`Created account with transaction ID: ${txId}`);
+
+}
+
+createAccount();

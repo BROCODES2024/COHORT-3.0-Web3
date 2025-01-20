@@ -1,3 +1,6 @@
+slides: https://petal-estimate-4e9.notion.site/Accounts-on-Solana-196657b4ca1a47ab95801b430484fdae
+
+notes: https://app.100xdevs.com/courses/13/455/465
 # Install solana cli
 
 You can install the solana cli locally by running the following command

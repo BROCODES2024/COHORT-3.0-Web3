@@ -1,1 +1,10 @@
-hi
+slides: https://petal-estimate-4e9.notion.site/Accounts-on-Solana-196657b4ca1a47ab95801b430484fdae
+
+notes: https://app.100xdevs.com/courses/13/455/465
+how does walltet show balance:
+user send request to rpc(remote procedure call) which interact with blockchain and used to send requests (can send req using postman)
+the above process is used in Mainnet,Devnet,Testnet
+
+Mainnet: The real Blockchain deploy here only if everything is perfect as it involves real soalana and real Blockchain (we cant run development here as it requires real solana for rent)
+Devnet: This is a dummy blockchain which have very little no of miners(developers), its used for development purposes we can airdrop(free solana) solana in this which obviously we wont be able to sell/buy
+Testnet: This is just for local machine development(ie only you)( to run this use solana-test-validator)

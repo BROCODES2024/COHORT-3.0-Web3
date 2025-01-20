@@ -1,0 +1,92 @@
+slides: https://petal-estimate-4e9.notion.site/Accounts-on-Solana-196657b4ca1a47ab95801b430484fdae
+
+notes: https://app.100xdevs.com/courses/13/455/465
+
+#Why solana?
+we’ll understand about one of the biggest use-case that blockchains like Solana/ETH solve for - Programs/Smart contracts.
+
+bitcoin only solves one usecase which is decentralized currency
+but people started creating their own blockchains for different usecase
+but the thing is these new blockchains have very few miners so these chains might have a coldstart problem
+coldstart: when there are very few miners some one can own 51% and tamper the blockchain easily
+
+so eth started solving this problem
+eth have enough miners so that it wont be tampered so other companies started building their usecase as smartcontracts on eth blockchain
+
+smartcontracts(eth) == Programs(Solana)
+
+### Programs/Smart contracts
+
+ETH was one of the first blockchains to introduce the `concept` of decentralized `state` / `programs`. These are popularly known as `smart contracts` on the ETH blockchain.
+smartcontracts is just some code running on the eth blockchain where users can interact with that specific node insted of creating new blockchains which are less secure
+//Here is a simple ETH smart contract:
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Counter {
+    uint public count;
+
+    // Constructor to initialize count
+    constructor() {
+        count = 0;
+    }
+
+    // Function to increment the count
+    function increment() public {
+        count += 1;
+    }
+
+    // Function to decrement the count
+    function decrement() public {
+        require(count > 0, "Count cannot be negative");
+        count -= 1;
+    }
+    
+    // Function to get the current count
+    function getCount() public view returns (uint) {
+        return count;
+    }
+}
+
+//Here is a simple Node.js HTTP server that does something similar
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Initialize count
+let count = 0;
+
+// Route to increment the count
+app.post('/increment', (req, res) => {
+  count += 1;
+  res.json({ count });
+});
+
+// Route to decrement the count
+app.post('/decrement', (req, res) => {
+  if (count > 0) {
+    count -= 1;
+    res.json({ count });
+  } else {
+    res.status(400).json({ error: 'Count cannot be negative' });
+  }
+});
+
+// Route to get the current count
+app.get('/count', (req, res) => {
+  res.json({ count });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+HTTP Servers are deployed on cloud providers like `GCP, Azure`
+
+Smart contracts/programs are deployed on the `blockchain` 
+
+The way solana programs work is significantly different from other blockchains. Lets understand how.

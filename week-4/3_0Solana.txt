@@ -1,0 +1,14 @@
+# Install solana cli
+
+You can install the solana cli locally by running the following command
+
+```jsx
+sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+```
+
+**For Windows people -** 
+
+https://github.com/solana-labs/solana/releases
+
+
+**Unzip and you should see all the .exe files**

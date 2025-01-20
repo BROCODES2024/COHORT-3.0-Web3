@@ -1,0 +1,36 @@
+slides: https://petal-estimate-4e9.notion.site/Accounts-on-Solana-196657b4ca1a47ab95801b430484fdae
+
+notes: https://app.100xdevs.com/courses/13/455/465
+
+# Accounts on Solana
+
+### Accounts
+
+On the Solana blockchain, an "account" is a fundamental data structure used to store various types of information.
+
+1. **Data Storage**: Accounts on Solana are used to store data required by programs (smart contracts) or to maintain state
+2. **Lamports**: Accounts hold a balance of Solana’s native cryptocurrency, lamports. Lamports are used to pay for transaction fees and to rent the space that the account occupies on the blockchain.     
+3. **Programs:**  On Solana, programs are special accounts that contain executable code. These accounts are distinct from regular data accounts in that they are designed to be executed by the blockchain when triggered by a transaction.
+
+**Account with `data` and `lamports` but no data -** https://explorer.solana.com/address/4GQsAP5jYi5ysGF1GEnWiV3zJHZLRcLWhLCSuim6aAkL
+
+
+**Account with `lamports` but no data - https://solscan.io/account/Eg4F6LW8DD3SvFLLigYJBFvRnXSBiLZYYJ3KEePDL95Q**
+
+
+**Program**
+
+https://solscan.io/account/TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+
+usually we worry about(on Solana):
+lamports
+data
+executable
+owner/assigned program id
+rent
+
+
+Rent on solana:
+there are multiple miners on blockchain, but if we want to run smartcontracts/programs on the chian we need to pay rent or else everyone would like to use the blockchain
+https://www.quicknode.com/guides/solana-development/getting-started/understanding-rent-on-solana
+

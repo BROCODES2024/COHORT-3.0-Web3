@@ -11,3 +11,17 @@ solana config set --url https://api.mainnet-beta.solana.com (to change the RPC u
 solana config set --url https://api.devnet.solana.com (to change the RPC url to devnet)
 solana airdrop 1(to get free solana for development purposes)
 solana-test-validator(for Testnet)
+spl-token create-token( to create token mint)
+
+
+Check the supply of the token
+spl-token supply AQoKYV7tYpTrFZN6P5oUufbQKAUr9mNYGe1TTJC9wajM(token mint address)
+
+// we can do all these in js as well (look at the sides for Reference)
+
+Create an associated token account
+spl-token create-account ChNkv9iW5pZJ1YAsNswC2CrdMUkFJBUbRWinjdLvKpXA(token mint address)
+(we can create an account for the address (which we get using solana address) on this token(the above token address) by using this command )
+
+Mint some tokens to yourself
+spl-token mint  ChNkv9iW5pZJ1YAsNswC2CrdMUkFJBUbRWinjdLvKpXA 100

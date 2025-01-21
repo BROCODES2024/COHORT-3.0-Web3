@@ -1,0 +1,34 @@
+slides: https://petal-estimate-4e9.notion.site/Accounts-on-Solana-196657b4ca1a47ab95801b430484fdae
+
+notes: https://app.100xdevs.com/courses/13/455/465
+
+# Token-22 program
+
+Ref - https://spl.solana.com/token-2022
+
+A token program on the Solana blockchain, defining a common implementation for fungible and non-fungible tokens.
+
+The Token-2022 Program, also known as Token Extensions, is a superset of the functionality provided by the [Token Program](https://spl.solana.com/token).
+
+Create token mint
+ spl-token create-token  --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
+​
+Create an associated token account
+spl-token create-account 8fTM5XYRaoTJU9PLUuyakF3EypQ4RXL5HxKtiw2z9pQQ
+​
+Mint the tokens
+spl-token mint 8fTM5XYRaoTJU9PLUuyakF3EypQ4RXL5HxKtiw2z9pQQ  100
+
+##Token-22 with metadata
+https://cdn.100xdevs.com/metadata.json
+Create a token with metadata enabled
+spl-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb create-token --enable-metadata(metadata is like token name, image etc)
+​
+Create metadata
+spl-token initialize-metadata pXfZ6Hg2s78m1iSRVsdzos9TmfkqkQdv5MmQrr77ZQK 100xx 100xxx https://cdn.100xdevs.com/metadata.json
+​
+Create ATA(associated token account)
+ spl-token create-account pXfZ6Hg2s78m1iSRVsdzos9TmfkqkQdv5MmQrr77ZQK
+​
+Mint
+ spl-token mint 1000

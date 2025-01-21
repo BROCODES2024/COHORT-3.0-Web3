@@ -1,3 +1,62 @@
 slides: https://petal-estimate-4e9.notion.site/Accounts-on-Solana-196657b4ca1a47ab95801b430484fdae
 
 notes: https://app.100xdevs.com/courses/13/455/465
+
+solana token program: 
+usdt,tether,bonk,daddy,pepe are kind of tokens which are bulit on solana token program or etherum token program they dont have their own blockchain ie their own miners.
+usdt,tether,bonk,daddy,pepe are just a kind of smart contracts on eth/sol token program
+etherum token program is ERC-20
+
+so if we want to create our own toekn we need to mint a token on solana token program and then enter the market
+and then we can create our own accounts for usdc,usdt etc from token mint
+
+# Creating a token
+Creating `your own token` (100x coin lets say) requires understanding the `Token Program` that is written by the engineers at Solana - https://github.com/solana-labs/solana-program-library
+
+Specifically, the way to create a `token` requires you to 
+
+1. Create a token mint
+2. Create an `associated token account` for this mint and for a specific user
+3. Mint tokens to that user.
+
+### Token mint
+
+It’s like a `bank` that has the athority to create more coins. It can also have the authority to `freeze coins`.
+
+### Associated token account
+
+Before you can ask other people to send you a token, you need to create an `associated token account` for that token and your public key
+
+Reference - https://spl.solana.com/token 
+##solana commands:
+Create a new cli wallet
+solana-keygen new
+​
+Set the RPC url
+solana config set --url https://api.devnet.solana.com
+​
+Airdrop yourself some SOL
+solana airdrop 1
+​
+Check your balance
+solana balance
+​
+Create token mint
+spl-token create-token (spl : solana program library)
+//as soon as we call this a request is sent to RPC which is furthur sent to blockchain and now blockchain mints the token
+
+spl-token create-token --decimals 4
+ie we can send up to 10 decimals ie 0.0001
+by default decimals is 9
+
+if decimal is 0 its a NFT ie we should send the whole (we cant send an decimal NFT)
+
+Check the supply of the token
+spl-token supply AQoKYV7tYpTrFZN6P5oUufbQKAUr9mNYGe1TTJC9wajM(token mint address)
+
+Create an associated token account
+spl-token create-account ChNkv9iW5pZJ1YAsNswC2CrdMUkFJBUbRWinjdLvKpXA(token mint address)
+(we can create an account for the address (which we get using solana address) on this token(the above token address) by using this command )
+
+Mint some tokens to yourself
+spl-token mint  ChNkv9iW5pZJ1YAsNswC2CrdMUkFJBUbRWinjdLvKpXA 100

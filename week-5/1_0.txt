@@ -1,0 +1,29 @@
+slides: https://petal-estimate-4e9.notion.site/Wallet-adapter-860feade9cb940cea696eedf4fc61251
+
+what is a Dapp??
+Decentralized app(any website which makes to use our crypto money)
+A decentralized application (DApp) is a type of distributed, 
+open source software application that runs on a peer-to-peer (P2P) blockchain network rather than on a single computer
+
+wallet adapter?
+which adapts to any wallet
+
+# Things to do
+
+Once a user connects to your `dapp`, you usually ask the user to do a few things with their wallet balance - 
+
+1. Request Airdrop
+2. Show SOL balances (GET data from the blockchain)
+3. Send a transaction (Send a transaction to the blockchain)
+4. Sign a message (Verify the ownership of the wallet)
+
+//faucet is a website where we can Request for airdrops(free solana for devnet)
+
+# Requesting airdrop (Creating a faucet)
+
+Create something like - https://solfaucet.com/
+
+**Hints**
+
+- `@solana/web3.js` provides you with a `requestAirdrop` function.
+- You can get the `current users` public key using the `useWallet` hook

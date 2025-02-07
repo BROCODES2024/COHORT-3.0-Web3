@@ -29,4 +29,6 @@ Create something like - https://solfaucet.com/
 **Hints**
 
 - `@solana/web3.js` provides you with a `requestAirdrop` function.
-- You can get the `current users` public key using the `useWallet` hook
+- You can get the `current users` public key using the `useWallet` hook\
+
+connectionprovider provides connection with the blockchain

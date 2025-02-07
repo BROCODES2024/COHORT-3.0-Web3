@@ -1,5 +1,8 @@
 slides: https://petal-estimate-4e9.notion.site/Wallet-adapter-860feade9cb940cea696eedf4fc61251
 notes:https://app.100xdevs.com/courses/13/461/474
+
+wallet adapter adapts to every wallet and give us some options to play with our wallets
+
 what is a Dapp??
 Decentralized app(any website which makes to use our crypto money)
 A decentralized application (DApp) is a type of distributed, 

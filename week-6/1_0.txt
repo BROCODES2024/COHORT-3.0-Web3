@@ -6,3 +6,6 @@ follow from week-8 offline
 # Transactions vs instructions
 
 When you send a `transaction` to the solana blockchain, you are actually sending a bunch of instructions (with a limit to the max number of instructions you can send)
+
+Week6 video was very slow paced so not much was covered
+this is covered again in week 8 offline 8.0.2

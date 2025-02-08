@@ -1,6 +1,8 @@
 slides: https://petal-estimate-4e9.notion.site/Wallet-adapter-860feade9cb940cea696eedf4fc61251
 notes:https://app.100xdevs.com/courses/13/461/474
 
+Wasnt able to complete full wallet adapter so did it again week 8 offline 8.0.1
+
 wallet adapter adapts to every wallet and give us some options to play with our wallets
 
 what is a Dapp??

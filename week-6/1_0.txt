@@ -1,0 +1,8 @@
+slides: https://petal-estimate-4e9.notion.site/Token-launchpad-in-react-f0027bd023d4467ab5eb87d16ab21b40
+notes: https://app.100xdevs.com/courses/13/480/526
+
+follow from week-8 offline
+
+# Transactions vs instructions
+
+When you send a `transaction` to the solana blockchain, you are actually sending a bunch of instructions (with a limit to the max number of instructions you can send)

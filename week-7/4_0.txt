@@ -1,0 +1,41 @@
+slides: https://petal-estimate-4e9.notion.site/Ownership-Authorities-Programs-and-PDAs-b2b8bfeae8064753982be9bd67afbb7b
+notes: https://app.100xdevs.com/courses/13/490/5
+# Authority in solana programs
+
+In Solana programs, `authorities` are entities or accounts that have the right to perform certain actions or make changes within the program.
+
+For example
+
+- Token mint authority - Can mint new tokens
+    1. Token with mint auth - https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+    2. Token with No mint auth - https://explorer.solana.com/address/8FQvjBxFdR51wbZfQVaWbkjR2sNNxDLyabNePPmsyou9
+- Token freeze authority - Can freeze tokens in an account
+    
+    Token with a freeze auth - https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+    
+- Upgrade authority - Can `upgrade` the code of a program.
+    
+    https://explorer.solana.com/address/8rpHNPsyEJQEJjC2waWvUXyvCkYghCZndACoXs9sNKZg?cluster=devnet
+    
+Creating and revoking mint authority
+## reating and revoking mint authority
+
+- Create a new token
+
+spl-token create-token
+
+- Create an ata(associated token account)
+
+spl-token create-account <token_mint_address> 
+
+- Try minting some tokens
+
+spl-token mint <token_mint_address> 10000000000
+
+- Check if `mint authority` exists on explorer
+
+Revoke mint authority
+spl-token authorize  <token_id>  mint --disable
+​
+Try to mint again/check the explorer
+spl-token mint <token_mint_address> 10000000000(this will throw an error)

@@ -1,6 +1,6 @@
 What is a Dapp?
 Decentralized Application
-A decentralized application (DApp) is a type of distributed, open source software application that runs on a peer-to-peer (P2P) blockchain network rather than on a single computer.
-
+A DApp (Decentralized Application) is an application that runs on a blockchain or peer-to-peer (P2P) network instead of a single centralized server. 
+Unlike traditional apps, DApps are open-source, transparent, and censorship-resistant, making them a key part of decentralized finance (DeFi), gaming, social media, and other blockchain-based solutions.
 metamask is a eth wallet
 backpack or phantom are sol wallets 

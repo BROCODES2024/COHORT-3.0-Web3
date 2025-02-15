@@ -1,0 +1,102 @@
+slides to create the Token-launchpad:
+https://petal-estimate-4e9.notion.site/Token-launchpad-in-react-f0027bd023d4467ab5eb87d16ab21b40
+
+Notes:
+https://app.100xdevs.com/courses/13/500/529
+
+Documentation
+https://solana.com/developers/guides/token-extensions/metadata-pointer
+https://spl.solana.com/token-2022/extensions#example-create-a-mint-with-metadata
+
+# Transactions vs instructions
+
+When you send a `transaction` to the solana blockchain, you are actually sending a bunch of instructions (with a limit to the max number of instructions you can send)
+
+## Wallet adapter vs local wallet
+Do you think we should use the `createMint` function to create the token mint?
+Like we did here - [https://www.notion.so/Equivalent-code-in-JS-afed3cf599d64ee5bae4cc05a7b9f346](https://www.notion.so/Equivalent-code-in-JS-afed3cf599d64ee5bae4cc05a7b9f346?pvs=21) ?
+
+const { createMint } = require('@solana/spl-token');
+const mint = await createMint(
+        connection,
+        payer,
+        mintAuthority,
+        null,
+        6,
+        TOKEN_PROGRAM_ID
+);
+
+Since we want an `end user` to create their own token, pay for gas for creating that token, 
+we need to ask `THEIR WALLET` for approval to create a token. We `CANT` create our own `KeyPair` and create a token using it.
+
+# Inspecting the createMint call
+
+The `createMint` function sends a `transaction` with 2 `instructions`
+
+1. Create a fresh `mint account` 
+2. Initialise data inside the `mint account` such that it stores `mint data` (decimals, mintAuthority etc)
+
+We need to bring in the same code in our codebase and make the user sign it 
+
+we used something called as buffer here
+buffer is undefined in browser
+but when you type node in cmd and then enter
+and then enter buffer u will see buffer is function
+why are we adding node-polyfills?
+because @solana/spl-token is bulit for node but not browser 
+so we use node-polyfills because it gets some global variables into the browser ex: buffer
+
+//How to add?
+Adding Node polyfill
+https://www.npmjs.com/package/vite-plugin-node-polyfills
+Install vite-plugin-node-polyfills
+npm install --save-dev vite-plugin-node-polyfills
+​
+Update vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), nodePolyfills(),],
+})
+
+
+//what is this?
+transaction.feePayer = wallet.publicKey;
+transaction.recentBlockhash = (
+  await connection.getLatestBlockhash()
+).blockhash;
+transaction.partialSign(mintKeypair);
+
+1️⃣ Setting the Fee Payer
+js
+Copy
+Edit
+transaction.feePayer = wallet.publicKey;
+What it does: Specifies who will pay the transaction fees.
+How it works:
+In Solana, every transaction requires a small fee (in lamports, the smallest unit of SOL).
+This line sets the fee payer to wallet.publicKey, meaning the connected wallet will cover the transaction cost.
+2️⃣ Fetching & Setting the Latest Blockhash
+js
+Copy
+Edit
+transaction.recentBlockhash = (
+  await connection.getLatestBlockhash()
+).blockhash;
+What it does: Fetches the latest blockhash from the Solana blockchain and sets it in the transaction.
+Why it matters:
+Solana requires each transaction to include a recent blockhash to prevent replay attacks.
+If the transaction isn't processed before the blockhash expires (usually after ~150 blocks), it will be rejected.
+3️⃣ Partially Signing the Transaction
+js
+Copy
+Edit
+transaction.partialSign(mintKeypair);
+What it does: Signs the transaction with the mintKeypair (the private key of the newly created token).
+Why is this needed?
+The mintKeypair is the authority for the new token.
+Since the transaction involves creating a token, its owner (mintKeypair) must approve/sign it.
+It’s partially signed because the user's wallet (wallet.publicKey) also needs to sign before submitting it.

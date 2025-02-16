@@ -1,0 +1,11 @@
+slides: https://www.canva.com/design/DAGRS0XmC9E/x1lzALp0Um8RAshjCg6Yug/edit
+View Notion Docs: week-8-online
+Associated token account(ATA) is a PDA(program derived address) but mint account isnt a PDA
+though both mint account and ata both are owned are token program
+
+ATA only has public key it doesnt have private key
+where as Mint account has both public/private keys
+
+
+
+notes: https://app.100xdevs.com/courses/13/501/530

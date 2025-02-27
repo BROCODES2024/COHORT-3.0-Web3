@@ -1,3 +1,5 @@
 notes: https://app.100xdevs.com/courses/13/511/531
 slides:https://100x-b-mcdn.akamai.net.in/cohort-3-slides/Decentralized%20Exchanges.pdf
+slides2: https://petal-estimate-4e9.notion.site/Decentralized-exchanges-1147dfd1073580dd8956cd90985c3fd7
+https://github.com/100xdevs-cohort-3/week-9-swap-contract
 Notion:week9

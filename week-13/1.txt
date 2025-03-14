@@ -1,0 +1,5 @@
+slides : https://www.canva.com/design/DAGVOvVE1ow/wTKvuP2OnyLuvr4aAwtM-A/edit
+notes: https://app.100xdevs.com/courses/13/588/652
+notes : https://app.100xdevs.com/courses/13/588/624
+go through notion
+code is incomplete

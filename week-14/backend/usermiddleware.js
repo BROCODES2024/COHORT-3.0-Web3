@@ -1,19 +1,23 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const usersec = process.env.jwtusersec;
+
 function usermiddleware(req, res, next) {
-  const token = req.headers.token;
-  const decoded = jwt.verify(token, usersec);
-  if (decoded) {
-    //here decoded.id comes from  sigin endpoint in user.js where we sent token as result which has id
-    req.userId = decoded.id;
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(403).json({ msg: "Unauthorized: No token provided" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, usersec);
+    req.userId = decoded.id; // Set user ID for later use
     next();
-  } else {
-    res.status(403).json({
-      msg: "not signed in",
-    });
+  } catch (error) {
+    return res.status(403).json({ msg: "Unauthorized: Invalid token" });
   }
 }
-module.exports = {
-  usermiddleware: usermiddleware,
-};
+
+module.exports = { usermiddleware };

@@ -5,10 +5,20 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const { z } = require("zod");
 const { usermiddleware } = require("./usermiddleware");
-const { Keypair } = require("@solana/web3.js");
+const {
+  Keypair,
+  Transaction,
+  Connection,
+  PublicKey,
+} = require("@solana/web3.js");
+const cors = require("cors");
+
 const usersec = process.env.jwtusersec;
 const app = express();
+app.use(cors());
 app.use(express.json());
+const connection = new Connection("https://api.devnet.solana.com");
+
 app.post("/api/v1/signup", async (req, res) => {
   const keypair = new Keypair();
   const reqbody1 = z.object({
@@ -16,33 +26,31 @@ app.post("/api/v1/signup", async (req, res) => {
     password: z.string().min(8).max(30),
   });
 
-  const parseddatawithsuccess = reqbody1.safeParse(req.body);
-  if (!parseddatawithsuccess.success) {
+  const parsedData = reqbody1.safeParse(req.body);
+  if (!parsedData.success) {
     return res.status(400).json({
       message: "Incorrect Format",
-      error: parseddatawithsuccess.error.errors,
+      error: parsedData.error.errors,
     });
   }
 
   const { username, password } = req.body;
 
   try {
-    // **Check if user already exists**
     const existingUser = await userModel.findOne({ username });
     if (existingUser) {
       return res.status(409).json({ message: "User already exists" });
     }
 
-    // **Hash the password**
     const hashedPassword = await bcrypt.hash(password, 10);
     const publicKey = keypair.publicKey.toBase58();
-    const privateKeyBase64 = Buffer.from(keypair.secretKey).toString("base64"); // Send only once
+    const privateKeyBase64 = Buffer.from(keypair.secretKey).toString("base64");
 
-    // **Store only the public key**
     await userModel.create({
       username,
       password: hashedPassword,
-      publicKey: publicKey,
+      publicKey,
+      privateKey: privateKeyBase64,
     });
 
     return res.status(201).json({
@@ -59,38 +67,47 @@ app.post("/api/v1/signup", async (req, res) => {
 
 app.post("/api/v1/signin", async (req, res) => {
   const { username, password } = req.body;
-
   try {
-    const response = await userModel.findOne({ username });
-    if (!response) {
+    const user = await userModel.findOne({ username });
+    if (!user) {
       return res.status(403).json({ msg: "Invalid username or password!" });
     }
 
-    const passwordmatch = await bcrypt.compare(password, response.password);
-    if (!passwordmatch) {
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
       return res.status(403).json({ msg: "Invalid username or password!" });
     }
 
-    // Generate JWT token
-    const token = jwt.sign({ id: response._id.toString() }, usersec, {
+    const token = jwt.sign({ id: user._id.toString() }, usersec, {
       expiresIn: "1h",
     });
-
-    res.json({ token });
+    res.json({ token, publicKey: user.publicKey });
   } catch (e) {
     res.status(500).json({ message: "An error occurred", error: e.message });
   }
 });
 
-// **Transaction Signing Endpoint**
-app.post("/api/v1/txn/sign", (req, res) => {
-  res.json({ message: "sign txn" });
-});
+app.post("/api/v1/txn/sign", usermiddleware, async (req, res) => {
+  try {
+    const { message } = req.body;
+    const tx = Transaction.from(Buffer.from(message, "base64"));
 
-// **Fixed API Route for Transaction Retrieval**
-app.post("/api/v1/txn/:id", (req, res) => {
-  const txnId = req.params.id;
-  res.json({ message: `Transaction ID: ${txnId}` });
+    const user = await userModel.findById(req.userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const privateKey = Buffer.from(user.privateKey, "base64");
+    const keypair = Keypair.fromSecretKey(privateKey);
+    tx.sign(keypair);
+
+    const signature = await connection.sendRawTransaction(tx.serialize());
+    res.json({ message: "Transaction signed and sent", signature });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Transaction signing failed", error: error.message });
+  }
 });
 
 app.listen(3000, () => {

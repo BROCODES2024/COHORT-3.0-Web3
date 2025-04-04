@@ -1,0 +1,3 @@
+slides 1: https://www.canva.com/design/DAGWfh7FkYs/atPF0eKRrFcVvxIWs1R3Sw/edit
+slides 2: https://petal-estimate-4e9.notion.site/Solidity-13e7dfd107358081be94ca74f42781b6
+go through notion docs
